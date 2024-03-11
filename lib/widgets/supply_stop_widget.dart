@@ -32,13 +32,21 @@ class _SupplyStopWidgetState extends State<SupplyStopWidget>
   void initState() {
     super.initState();
 
+    double length = 0;
+    double maxWidth = 300.0;
+    for (int i = 0; i <= widget.supplyStop.length; i++) {
+      if (length < maxWidth) {
+        length += 9;
+      }
+    }
+
     arriveController = AnimationController(
       duration: Duration(milliseconds: widget.supplyStop.length * 12),
       vsync: this,
     );
     final arriveCurve =
         CurvedAnimation(parent: arriveController, curve: Curves.easeInCubic);
-    arrive = Tween(begin: 0.0, end: widget.supplyStop.length * 9.5).animate(arriveCurve);
+    arrive = Tween(begin: 0.0, end: length).animate(arriveCurve);
   }
 
   @override
@@ -74,6 +82,7 @@ class _SupplyStopWidgetState extends State<SupplyStopWidget>
                 child: Text(
                   widget.supplyStop,
                   style: SailerTheme.bodyText,
+                  overflow: TextOverflow.ellipsis,
                 ),
               ),
               AnimatedBuilder(

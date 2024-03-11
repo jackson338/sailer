@@ -65,10 +65,26 @@ class ParentState extends Equatable {
           title: 'Purchase investment Property',
           arrived: true,
         ),
+        SupplyStop(
+          title: 'Sketch out dream home',
+          arrived: false,
+        ),
+        SupplyStop(
+          title: 'Price out the steps using price/sqft',
+          arrived: true,
+        ),
       ],
       '2029 Destination': [
         SupplyStop(
+          title: 'Have a kid',
+          arrived: false,
+        ),
+        SupplyStop(
           title: 'Save up \$1,000,000',
+          arrived: false,
+        ),
+        SupplyStop(
+          title: 'Start a company',
           arrived: false,
         ),
       ],

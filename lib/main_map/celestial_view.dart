@@ -76,13 +76,11 @@ class Stars extends StatelessWidget {
       ),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 10),
-        child: Expanded(
-          child: Text(
-            goal,
-            style: SailerTheme.bodyText.copyWith(
-              color: SailerTheme.starColor,
-              fontSize: 23,
-            ),
+        child: Text(
+          goal,
+          style: SailerTheme.bodyText.copyWith(
+            color: SailerTheme.starColor,
+            fontSize: 25,
           ),
         ),
       ),
@@ -94,7 +92,7 @@ class StarrySkyPainter extends CustomPainter {
   final int numberOfStars;
   final Random random = Random();
 
-  StarrySkyPainter({this.numberOfStars = 3500});
+  StarrySkyPainter({this.numberOfStars = 9000});
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -104,8 +102,8 @@ class StarrySkyPainter extends CustomPainter {
       starPaint.color =
           SailerTheme.starColors[random.nextInt(SailerTheme.starColors.length - 1)];
       // Generate a random position for each star
-      final position =
-          Offset(random.nextDouble() * size.width, random.nextDouble() * size.height);
+      final position = Offset(
+          random.nextDouble() * size.width, random.nextDouble() * size.height - 60);
       // Optionally, randomize the star size as well
       final starSize = random.nextDouble() * 1.05 + 0.05; // Stars size from 1 to 3
       // Draw the star

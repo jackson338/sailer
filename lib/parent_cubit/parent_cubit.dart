@@ -5,7 +5,34 @@ import 'package:sailer/models/supply_stop.dart';
 part 'parent_state.dart';
 
 class ParentCubit extends Cubit<ParentState> {
-  ParentCubit() : super(const ParentState());
+  ParentCubit() : super(const ParentState()) {
+    sortSupplies();
+  }
+
+  void sortSupplies() {
+    Map<String, List<SupplyStop>> supplyStops = {};
+    state.supplyStops.forEach((key, value) {
+      List<SupplyStop> sortedList = List.from(value)
+        ..sort((a, b) {
+          if (a.arrived == true && b.arrived == false) {
+            return 1; // b comes before a
+          } else if (a.arrived == false && b.arrived == true) {
+            return -1; // a comes before b
+          }
+          return 0; // No change in order
+        });
+      supplyStops[key] = sortedList;
+    });
+    emit(state.copyWith(supplyStops: supplyStops));
+  }
+
+  void addDestination(String newDest) {
+    Map<String, List<DestinationModel>> destinations = {
+      ...state.destinations,
+      newDest: [],
+    };
+    emit(state.copyWith(destinations: destinations));
+  }
 
   void toggleView() => emit(state.copyWith(view: !state.view));
 
@@ -24,6 +51,7 @@ class ParentCubit extends Cubit<ParentState> {
     supplyStops.update(destinationKey, (value) => newSupply);
 
     emit(state.copyWith(supplyStops: supplyStops));
+    sortSupplies();
   }
 
   void arriveDestination({
