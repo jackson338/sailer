@@ -29,22 +29,22 @@ class ParentState extends Equatable {
         DestinationModel(
           title: 'Own a company',
           arrived: false,
-          id: '1',
+          id: '4',
         ),
         DestinationModel(
           title: 'Have 2 kids',
           arrived: true,
-          id: '2',
+          id: '5',
         ),
         DestinationModel(
           title: 'Build The Steps',
           arrived: false,
-          id: '3',
+          id: '6',
         ),
         DestinationModel(
           title: 'Create prototype of the Vlens',
           arrived: true,
-          id: '3',
+          id: '7',
         ),
       ],
     },
@@ -58,32 +58,39 @@ class ParentState extends Equatable {
     this.supplyStops = const {
       '2027 Destination': [
         SupplyStop(
+          id: '1',
           title: 'Save up \$150k',
           arrived: false,
         ),
         SupplyStop(
+          id: '2',
           title: 'Purchase investment Property',
           arrived: true,
         ),
         SupplyStop(
+          id: '3',
           title: 'Sketch out dream home',
           arrived: false,
         ),
         SupplyStop(
+          id: '4',
           title: 'Price out the steps using price/sqft',
           arrived: true,
         ),
       ],
       '2029 Destination': [
         SupplyStop(
+          id: '5',
           title: 'Have a kid',
           arrived: false,
         ),
         SupplyStop(
+          id: '6',
           title: 'Save up \$1,000,000',
           arrived: false,
         ),
         SupplyStop(
+          id: '7',
           title: 'Start a company',
           arrived: false,
         ),

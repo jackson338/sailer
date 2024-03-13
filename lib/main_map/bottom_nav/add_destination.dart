@@ -1,24 +1,31 @@
-import 'package:flutter/material.dart';
-import 'package:sailer/parent_cubit/parent_cubit.dart';
-import 'package:sailer/theme/sailer_theme.dart';
+import 'dart:async';
 
-class AddDestination extends StatefulWidget {
+import 'package:flutter/material.dart';
+import 'package:sailer/main_map/bottom_nav/pages/destination_page.dart';
+import 'package:sailer/main_map/bottom_nav/pages/sub_destination_page.dart';
+import 'package:sailer/main_map/bottom_nav/pages/supply_stops_page.dart';
+import 'package:sailer/parent_cubit/parent_cubit.dart';
+
+class DestinationSheet extends StatefulWidget {
   final ParentCubit cubit;
-  const AddDestination({
+  const DestinationSheet({
     super.key,
     required this.cubit,
   });
 
   @override
-  State<AddDestination> createState() => _AddDestinationState();
+  State<DestinationSheet> createState() => _DestinationSheetState();
 }
 
-class _AddDestinationState extends State<AddDestination> {
+class _DestinationSheetState extends State<DestinationSheet> {
   List<String> destinations = [];
+  int pageIndex = 1;
+  int destIndex = 0;
+  PageController controller = PageController();
+
   @override
   void initState() {
     super.initState();
-
     widget.cubit.state.destinations.forEach(
       (key, value) {
         destinations.insert(0, key);
@@ -26,55 +33,28 @@ class _AddDestinationState extends State<AddDestination> {
     );
   }
 
-  void _add(
-    String newDest,
-  ) =>
-      setState(() {
-        destinations.insert(0, newDest);
-      });
-
   @override
   Widget build(BuildContext context) {
-    TextEditingController controller = TextEditingController();
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(15),
-        gradient: const LinearGradient(
-          begin: Alignment.bottomLeft,
-          end: Alignment.topRight,
-          colors: SailerTheme.backgroundColors,
-        ),
+    Timer(
+      const Duration(milliseconds: 100),
+      () => controller.jumpToPage(pageIndex),
+    );
+    List<Widget> pages = [
+      SubDestinationPage(
+        cubit: widget.cubit,
+        dest: destinations[destIndex],
       ),
-      child: Padding(
-        padding: const EdgeInsets.all(12.0),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 10.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              TextField(
-                style: SailerTheme.title,
-                controller: controller,
-                keyboardAppearance: Brightness.dark,
-                onSubmitted: (val) {
-                  _add(val);
-                  widget.cubit.addDestination(val);
-                  controller.text = '';
-                },
-              ),
-              Expanded(
-                child: ListView.builder(
-                  itemCount: destinations.length,
-                  itemBuilder: (context, index) => Text(
-                    destinations[index],
-                    style: SailerTheme.title,
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
+      DestinationPage(cubit: widget.cubit),
+      SupplyStopsPage(
+        cubit: widget.cubit,
+        dest: destinations[destIndex],
       ),
+    ];
+    return PageView.builder(
+      controller: controller,
+      itemBuilder: (context, index) {
+        return pages[index];
+      },
     );
   }
 }

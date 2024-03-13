@@ -34,6 +34,9 @@ class ParentCubit extends Cubit<ParentState> {
     emit(state.copyWith(destinations: destinations));
   }
 
+  void addSubDestination(String key, String subDest) {}
+  void addSupplyStop(String key, String supplyStop) {}
+
   void toggleView() => emit(state.copyWith(view: !state.view));
 
   void arriveSupplyStop({
@@ -42,8 +45,11 @@ class ParentCubit extends Cubit<ParentState> {
     required bool arrive,
   }) {
     List<SupplyStop> newSupply = [...state.supplyStops[destinationKey]!];
-    final replaceSupply =
-        SupplyStop(title: newSupply[supplyIndex].title, arrived: arrive);
+    final replaceSupply = SupplyStop(
+      title: newSupply[supplyIndex].title,
+      arrived: arrive,
+      id: DateTime.now().toString(),
+    );
     newSupply.removeAt(supplyIndex);
     newSupply.insert(supplyIndex, replaceSupply);
 

@@ -101,12 +101,9 @@ class StarrySkyPainter extends CustomPainter {
     for (int i = 0; i < numberOfStars; i++) {
       starPaint.color =
           SailerTheme.starColors[random.nextInt(SailerTheme.starColors.length - 1)];
-      // Generate a random position for each star
       final position = Offset(
-          random.nextDouble() * size.width, random.nextDouble() * size.height - 60);
-      // Optionally, randomize the star size as well
-      final starSize = random.nextDouble() * 1.05 + 0.05; // Stars size from 1 to 3
-      // Draw the star
+          random.nextDouble() * size.width, random.nextDouble() * size.height - 35);
+      final starSize = random.nextDouble() * 1.05 + 0.05;
       canvas.drawCircle(position, starSize, starPaint);
     }
   }

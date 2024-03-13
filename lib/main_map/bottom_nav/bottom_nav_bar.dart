@@ -1,12 +1,10 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:sailer/alligator.dart';
 import 'package:sailer/main_map/bottom_nav/add_destination.dart';
-import 'package:sailer/main_map/bottom_nav/add_sheet.dart';
 import 'package:sailer/parent_cubit/parent_cubit.dart';
 import 'package:sailer/theme/sailer_theme.dart';
 import 'package:sailer/widgets/sailboat/sailboat.dart';
@@ -63,7 +61,7 @@ class BottomNavBar extends StatelessWidget {
                   child: const Sailboat(),
                 ),
                 InkWell(
-                  onTap: () => addTap(
+                  onTap: () => _destinationSheet(
                     context,
                     cubit,
                   ),
@@ -87,23 +85,7 @@ class BottomNavBar extends StatelessWidget {
 
 void toolsTap() {}
 
-void addTap(
-  BuildContext context,
-  ParentCubit cubit,
-) {
-  Alligator.showBottomSheet(
-    context: context,
-    content: AddSheet(
-      cubit: cubit,
-      onTap: () => addDestination(
-        context,
-        cubit,
-      ),
-    ),
-  );
-}
-
-void addDestination(
+void _destinationSheet(
   BuildContext context,
   ParentCubit cubit,
 ) {
@@ -111,10 +93,10 @@ void addDestination(
     context,
     SizedBox(
       height: MediaQuery.of(context).size.height * 0.8,
-      child: AddDestination(
+      child: DestinationSheet(
         cubit: cubit,
       ),
     ),
-    SailerTheme.islandColor,
+    SailerTheme.backgroundColors[0],
   );
 }
