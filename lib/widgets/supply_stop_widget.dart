@@ -79,10 +79,13 @@ class _SupplyStopWidgetState extends State<SupplyStopWidget>
                   vertical: 4.0,
                   horizontal: 12,
                 ),
-                child: Text(
-                  widget.supplyStop,
-                  style: SailerTheme.bodyText,
-                  overflow: TextOverflow.ellipsis,
+                child: SizedBox(
+                  width: MediaQuery.of(context).size.width * 0.8,
+                  child: Text(
+                    widget.supplyStop,
+                    style: SailerTheme.bodyText,
+                    overflow: TextOverflow.ellipsis,
+                  ),
                 ),
               ),
               AnimatedBuilder(
@@ -120,9 +123,12 @@ class _SupplyStopWidgetState extends State<SupplyStopWidget>
                   vertical: 4.0,
                   horizontal: 12,
                 ),
-                child: Text(
-                  widget.supplyStop,
-                  style: SailerTheme.bodyText,
+                child: SizedBox(
+                  width: MediaQuery.of(context).size.width * 0.8,
+                  child: Text(
+                    widget.supplyStop,
+                    style: SailerTheme.bodyText,
+                  ),
                 ),
               ),
               AnimatedBuilder(

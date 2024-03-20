@@ -9,14 +9,6 @@ class SailerTheme {
   static const starColors = [
     Colors.white,
     Colors.white,
-    Colors.white,
-    Colors.white,
-    Colors.white,
-    Colors.white,
-    Color(0xFF9FCAFF),
-    Color(0xFF9FCAFF),
-    Color(0xFF9FCAFF),
-    Color(0xFF9FCAFF),
     Color(0xFF9FCAFF),
     Color(0xFF9FCAFF),
     Color(0xFF9FCAFF),
@@ -26,10 +18,6 @@ class SailerTheme {
     Color(0xFF7FAFE7),
     Color(0xFF7FAFE7),
     Color(0xFF7FAFE7),
-    Color(0xFF7FAFE7),
-    Color(0xFF7FAFE7),
-    Color(0xFFFBBB72),
-    Color(0xFFFBE772),
   ];
   static const backgroundColors = [
     Color(0xFFeae2c6),
@@ -54,7 +42,7 @@ class SailerTheme {
       fontSize: 27,
     ),
   );
-  static TextStyle subtitle1 = GoogleFonts.satisfy(
+  static TextStyle subtitle = GoogleFonts.satisfy(
     textStyle: TextStyle(
       color: _textColor,
       letterSpacing: .5,

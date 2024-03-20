@@ -17,12 +17,15 @@ class SubDestinationPage extends StatefulWidget {
 }
 
 class _SubDestinationPageState extends State<SubDestinationPage> {
-  late List<DestinationModel> subDestinations;
+  List<DestinationModel> subDestinations = [];
   @override
   void initState() {
     super.initState();
-
-    subDestinations = widget.cubit.state.destinations[widget.dest] ?? [];
+    if (widget.cubit.state.destinations[widget.dest] != null) {
+      for (final sd in widget.cubit.state.destinations[widget.dest]!) {
+        subDestinations.add(sd);
+      }
+    }
   }
 
   void _add(
@@ -62,7 +65,7 @@ class _SubDestinationPageState extends State<SubDestinationPage> {
                 style: SailerTheme.title,
               ),
               TextField(
-                style: SailerTheme.subtitle1,
+                style: SailerTheme.bodyText,
                 controller: controller,
                 keyboardAppearance: Brightness.dark,
                 onSubmitted: (val) {
@@ -76,7 +79,7 @@ class _SubDestinationPageState extends State<SubDestinationPage> {
                   itemCount: subDestinations.length,
                   itemBuilder: (context, index) => Text(
                     subDestinations[index].title,
-                    style: SailerTheme.subtitle1,
+                    style: SailerTheme.bodyText,
                   ),
                 ),
               ),

@@ -47,7 +47,7 @@ class CelestialView extends StatelessWidget {
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
                       'Tap to return',
-                      style: SailerTheme.subtitle1,
+                      style: SailerTheme.subtitle,
                     ),
                   ),
                 ),

@@ -17,12 +17,15 @@ class SupplyStopsPage extends StatefulWidget {
 }
 
 class _SupplyStopsPageState extends State<SupplyStopsPage> {
-  late List<SupplyStop> supplyStops;
+  List<SupplyStop> supplyStops = [];
   @override
   void initState() {
     super.initState();
-
-    supplyStops = widget.cubit.state.supplyStops[widget.dest] ?? [];
+    if (widget.cubit.state.supplyStops[widget.dest] != null) {
+      for (final sp in widget.cubit.state.supplyStops[widget.dest]!) {
+        supplyStops.add(sp);
+      }
+    }
   }
 
   void _add(
@@ -62,7 +65,7 @@ class _SupplyStopsPageState extends State<SupplyStopsPage> {
                 style: SailerTheme.title,
               ),
               TextField(
-                style: SailerTheme.bodyText,
+                style: SailerTheme.subtitle,
                 controller: controller,
                 keyboardAppearance: Brightness.dark,
                 onSubmitted: (val) {
@@ -76,7 +79,7 @@ class _SupplyStopsPageState extends State<SupplyStopsPage> {
                   itemCount: supplyStops.length,
                   itemBuilder: (context, index) => Text(
                     supplyStops[index].title,
-                    style: SailerTheme.bodyText,
+                    style: SailerTheme.subtitle,
                   ),
                 ),
               ),

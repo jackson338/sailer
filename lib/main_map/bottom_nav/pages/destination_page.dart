@@ -4,9 +4,13 @@ import 'package:sailer/theme/sailer_theme.dart';
 
 class DestinationPage extends StatefulWidget {
   final ParentCubit cubit;
+  final Function(int index) selectDest;
+  final int destIndex;
   const DestinationPage({
     super.key,
     required this.cubit,
+    required this.selectDest,
+    required this.destIndex,
   });
 
   @override
@@ -15,9 +19,11 @@ class DestinationPage extends StatefulWidget {
 
 class _DestinationPageState extends State<DestinationPage> {
   List<String> destinations = [];
+  int destIndex = 0;
   @override
   void initState() {
     super.initState();
+    destIndex = widget.destIndex;
 
     widget.cubit.state.destinations.forEach(
       (key, value) {
@@ -64,14 +70,38 @@ class _DestinationPageState extends State<DestinationPage> {
                   _add(val);
                   widget.cubit.addDestination(val);
                   controller.text = '';
+                  Navigator.pop(context);
                 },
               ),
               Expanded(
                 child: ListView.builder(
                   itemCount: destinations.length,
-                  itemBuilder: (context, index) => Text(
-                    destinations[index],
-                    style: SailerTheme.title,
+                  itemBuilder: (context, index) => GestureDetector(
+                    onTap: () {
+                      widget.selectDest(index);
+                      setState(() {
+                        destIndex = index;
+                      });
+                    },
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          destinations[index],
+                          style: SailerTheme.title,
+                        ),
+                        destIndex == index
+                            ? Container(
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(30),
+                                  color: SailerTheme.islandColor,
+                                ),
+                                height: 30,
+                                width: 30,
+                              )
+                            : const SizedBox.shrink(),
+                      ],
+                    ),
                   ),
                 ),
               ),
