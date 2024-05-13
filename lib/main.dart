@@ -11,7 +11,7 @@ void main() async {
   // fixme: implement secure storage when hydrated bloc architecture is
   // complete
   HydratedBloc.storage = await HydratedStorage.build(
-    storageDirectory: await getTemporaryDirectory(),
+    storageDirectory: await getApplicationDocumentsDirectory(),
   );
 
   await Hive.initFlutter();

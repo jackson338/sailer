@@ -78,6 +78,7 @@ class _DestinationSheetState extends State<DestinationSheet> {
           children: [
             Expanded(
               child: PageView.builder(
+                itemCount: 3,
                 controller: controller,
                 onPageChanged: (index) {
                   setState(() {

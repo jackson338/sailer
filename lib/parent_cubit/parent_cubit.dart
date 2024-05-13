@@ -79,6 +79,50 @@ class ParentCubit extends HydratedCubit<ParentState> {
     emit(state.copyWith(supplyStops: supplyStops));
   }
 
+  void removeDestination(String key) {
+    Map<String, List<DestinationModel>> destinations = {
+      ...state.destinations,
+    };
+    destinations.removeWhere((key, value) => key == key);
+    Map<String, List<SupplyStop>> supplyStops = {
+      ...state.supplyStops,
+    };
+    supplyStops.removeWhere((key, value) => key == key);
+    emit(state.copyWith(destinations: destinations, supplyStops: supplyStops));
+  }
+
+  void removeSubDestination(String key, int index) {
+    List<DestinationModel> sd = [];
+    if (state.destinations[key] != null) {
+      sd = [...state.destinations[key]!];
+    }
+    sd.removeAt(index);
+    Map<String, List<DestinationModel>> destinations = {
+      ...state.destinations.map(
+        (k, value) => k == key ? MapEntry(key, sd) : MapEntry(k, value),
+      )
+    };
+
+    emit(state.copyWith(destinations: destinations));
+  }
+
+  void removeSupply(
+    String key,
+    int index,
+  ) {
+    List<SupplyStop> sp = [];
+    if (state.supplyStops[key] != null) {
+      sp = [...state.supplyStops[key]!];
+    }
+    sp.removeAt(index);
+    Map<String, List<SupplyStop>> supplyStops = {
+      ...state.supplyStops.map(
+        (k, value) => k == key ? MapEntry(key, sp) : MapEntry(k, value),
+      )
+    };
+    emit(state.copyWith(supplyStops: supplyStops));
+  }
+
   void toggleView() => emit(state.copyWith(view: !state.view));
 
   void arriveSupplyStop({
