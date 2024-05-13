@@ -1,5 +1,12 @@
-part of 'parent_cubit.dart';
+// ignore: depend_on_referenced_packages
+import 'package:equatable/equatable.dart';
+// ignore: depend_on_referenced_packages
+import 'package:json_annotation/json_annotation.dart';
+import 'package:sailer/models/destination_model.dart';
+import 'package:sailer/models/supply_stop.dart';
+part 'parent_state.g.dart';
 
+@JsonSerializable(fieldRename: FieldRename.pascal, explicitToJson: true)
 class ParentState extends Equatable {
   final Map<String, List<DestinationModel>> destinations;
   final Map<String, List<SupplyStop>> supplyStops;
@@ -8,70 +15,18 @@ class ParentState extends Equatable {
 
   const ParentState({
     this.destinations = const {
-      '2027 Destination': [
-        DestinationModel(
-          title: 'Home on 1 acre of land',
-          arrived: false,
-          id: '1',
-        ),
-        DestinationModel(
-          title: 'Married in the temple',
-          arrived: true,
-          id: '2',
-        ),
-        DestinationModel(
-          title: 'Test Goal',
-          arrived: false,
-          id: '3',
-        ),
-      ],
-      '2029 Destination': [
-        DestinationModel(
-          title: 'Own a company',
-          arrived: false,
-          id: '1',
-        ),
-        DestinationModel(
-          title: 'Have 2 kids',
-          arrived: true,
-          id: '2',
-        ),
-        DestinationModel(
-          title: 'Build The Steps',
-          arrived: false,
-          id: '3',
-        ),
-        DestinationModel(
-          title: 'Create prototype of the Vlens',
-          arrived: true,
-          id: '3',
-        ),
-      ],
+      '2024 Destination': [],
     },
     this.view = false,
     this.celestialGoals = const [
-      'Return to the presense of God and reign with him in Eternal Glory',
+      'Return to the presense of God and reign with him in Eternal Glory in the Celestial Kingdom',
+      'Faithful Temple Marriage',
+      'Become the person I need to become',
       'Fulfilled my life mission',
-      'Become the person I want to become',
       'Have a great marriage and great family',
     ],
     this.supplyStops = const {
-      '2027 Destination': [
-        SupplyStop(
-          title: 'Save up \$150k',
-          arrived: false,
-        ),
-        SupplyStop(
-          title: 'Purchase investment Property',
-          arrived: true,
-        ),
-      ],
-      '2029 Destination': [
-        SupplyStop(
-          title: 'Save up \$1,000,000',
-          arrived: false,
-        ),
-      ],
+      '2024 Destination': [],
     },
   });
 
@@ -86,6 +41,10 @@ class ParentState extends Equatable {
       supplyStops: supplyStops ?? this.supplyStops,
     );
   }
+
+  factory ParentState.fromJson(Map<String, dynamic> json) => _$ParentStateFromJson(json);
+
+  Map<String, dynamic> toJson() => _$ParentStateToJson(this);
 
   @override
   List<Object?> get props => [

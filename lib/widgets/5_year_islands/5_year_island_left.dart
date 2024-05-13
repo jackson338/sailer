@@ -69,7 +69,7 @@ class _Year5IslandLeftState extends State<Year5IslandLeft> {
             padding: const EdgeInsets.only(bottom: 20.0),
             child: Text(
               widget.destinationKey,
-              style: SailerTheme.subtitle1,
+              style: SailerTheme.subtitle,
             ),
           ),
         ],

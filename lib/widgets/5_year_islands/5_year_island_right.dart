@@ -33,7 +33,7 @@ class _Year5IslandRightState extends State<Year5IslandRight> {
             padding: const EdgeInsets.only(bottom: 20.0),
             child: Text(
               widget.destinationKey,
-              style: SailerTheme.subtitle1,
+              style: SailerTheme.subtitle,
             ),
           ),
           Padding(
