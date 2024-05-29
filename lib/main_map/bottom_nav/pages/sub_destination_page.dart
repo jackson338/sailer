@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:sailer/models/destination_model.dart';
-import 'package:sailer/parent_cubit/parent_cubit.dart';
-import 'package:sailer/theme/sailer_theme.dart';
+import 'package:gemini_goals/models/destination_model.dart';
+import 'package:gemini_goals/parent_cubit/parent_cubit.dart';
+import 'package:gemini_goals/theme/gemini_theme.dart';
 
 class SubDestinationPage extends StatefulWidget {
   final String dest;
@@ -50,7 +50,7 @@ class _SubDestinationPageState extends State<SubDestinationPage> {
         gradient: const LinearGradient(
           begin: Alignment.bottomLeft,
           end: Alignment.topRight,
-          colors: SailerTheme.backgroundColors,
+          colors: GeminiTheme.backgroundColors,
         ),
       ),
       child: Padding(
@@ -62,10 +62,10 @@ class _SubDestinationPageState extends State<SubDestinationPage> {
             children: [
               Text(
                 'Sub Destinations',
-                style: SailerTheme.title,
+                style: GeminiTheme.title,
               ),
               TextField(
-                style: SailerTheme.bodyText,
+                style: GeminiTheme.bodyText,
                 controller: controller,
                 keyboardAppearance: Brightness.dark,
                 onSubmitted: (val) {
@@ -79,7 +79,7 @@ class _SubDestinationPageState extends State<SubDestinationPage> {
                   itemCount: subDestinations.length,
                   itemBuilder: (context, index) => Text(
                     subDestinations[index].title,
-                    style: SailerTheme.bodyText,
+                    style: GeminiTheme.bodyText,
                   ),
                 ),
               ),

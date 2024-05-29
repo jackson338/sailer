@@ -62,3 +62,21 @@ class Alligator {
     );
   }
 }
+
+class OverlayNavigation extends StatefulWidget {
+  final Widget screen;
+  const OverlayNavigation({
+    super.key,
+    required this.screen,
+  });
+
+  @override
+  State<OverlayNavigation> createState() => _OverlayNavigationState();
+}
+
+class _OverlayNavigationState extends State<OverlayNavigation> {
+  @override
+  Widget build(BuildContext context) {
+    return widget.screen;
+  }
+}

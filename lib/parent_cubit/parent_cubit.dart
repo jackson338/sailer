@@ -1,7 +1,7 @@
 import 'package:hydrated_bloc/hydrated_bloc.dart';
-import 'package:sailer/models/destination_model.dart';
-import 'package:sailer/models/supply_stop.dart';
-import 'package:sailer/parent_cubit/parent_state.dart';
+import 'package:gemini_goals/models/destination_model.dart';
+import 'package:gemini_goals/models/supply_stop.dart';
+import 'package:gemini_goals/parent_cubit/parent_state.dart';
 
 class ParentCubit extends HydratedCubit<ParentState> {
   ParentCubit() : super(const ParentState()) {
@@ -58,7 +58,11 @@ class ParentCubit extends HydratedCubit<ParentState> {
     emit(state.copyWith(destinations: destinations));
   }
 
-  void addSupplyStop(String key, String supplyStop) {
+  void addSupplyStop({
+    required String key,
+    required String supplyStop,
+    String? description,
+  }) {
     List<SupplyStop> sp = [];
     if (state.supplyStops[key] != null) {
       sp = [...state.supplyStops[key]!];
@@ -66,6 +70,7 @@ class ParentCubit extends HydratedCubit<ParentState> {
     sp.add(
       SupplyStop(
         title: supplyStop,
+        description: description,
         arrived: false,
         id: DateTime.now().toString(),
       ),

@@ -1,11 +1,11 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:sailer/main_map/bottom_nav/pages/destination_page.dart';
-import 'package:sailer/main_map/bottom_nav/pages/sub_destination_page.dart';
-import 'package:sailer/main_map/bottom_nav/pages/supply_stops_page.dart';
-import 'package:sailer/parent_cubit/parent_cubit.dart';
-import 'package:sailer/theme/sailer_theme.dart';
+import 'package:gemini_goals/main_map/bottom_nav/pages/destination_page.dart';
+import 'package:gemini_goals/main_map/bottom_nav/pages/sub_destination_page.dart';
+import 'package:gemini_goals/main_map/bottom_nav/pages/supply_stops_page.dart';
+import 'package:gemini_goals/parent_cubit/parent_cubit.dart';
+import 'package:gemini_goals/theme/gemini_theme.dart';
 
 class DestinationSheet extends StatefulWidget {
   final ParentCubit cubit;
@@ -115,7 +115,7 @@ class _DestinationSheetState extends State<DestinationSheet> {
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(30),
-          color: selected ? SailerTheme.widgetColor : SailerTheme.backgroundColors[1],
+          color: selected ? GeminiTheme.widgetColor : GeminiTheme.backgroundColors[1],
         ),
         height: 30,
         width: 30,

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:sailer/models/supply_stop.dart';
-import 'package:sailer/parent_cubit/parent_cubit.dart';
-import 'package:sailer/theme/sailer_theme.dart';
+import 'package:gemini_goals/models/supply_stop.dart';
+import 'package:gemini_goals/parent_cubit/parent_cubit.dart';
+import 'package:gemini_goals/theme/gemini_theme.dart';
 
 class SupplyStopsPage extends StatefulWidget {
   final String dest;
@@ -50,7 +50,7 @@ class _SupplyStopsPageState extends State<SupplyStopsPage> {
         gradient: const LinearGradient(
           begin: Alignment.bottomLeft,
           end: Alignment.topRight,
-          colors: SailerTheme.backgroundColors,
+          colors: GeminiTheme.backgroundColors,
         ),
       ),
       child: Padding(
@@ -62,15 +62,18 @@ class _SupplyStopsPageState extends State<SupplyStopsPage> {
             children: [
               Text(
                 'Supply Stops',
-                style: SailerTheme.title,
+                style: GeminiTheme.title,
               ),
               TextField(
-                style: SailerTheme.subtitle,
+                style: GeminiTheme.subtitle,
                 controller: controller,
                 keyboardAppearance: Brightness.dark,
                 onSubmitted: (val) {
                   _add(val);
-                  widget.cubit.addSupplyStop(widget.dest, val);
+                  widget.cubit.addSupplyStop(
+                    key: widget.dest,
+                    supplyStop: val,
+                  );
                   controller.text = '';
                 },
               ),
@@ -79,7 +82,7 @@ class _SupplyStopsPageState extends State<SupplyStopsPage> {
                   itemCount: supplyStops.length,
                   itemBuilder: (context, index) => Text(
                     supplyStops[index].title,
-                    style: SailerTheme.subtitle,
+                    style: GeminiTheme.subtitle,
                   ),
                 ),
               ),

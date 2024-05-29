@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:sailer/main_map/bottom_nav/bottom_nav_bar.dart';
-import 'package:sailer/main_map/celestial_view.dart';
-import 'package:sailer/models/supply_stop.dart';
-import 'package:sailer/parent_cubit/parent_cubit.dart';
-import 'package:sailer/parent_cubit/parent_state.dart';
-import 'package:sailer/theme/sailer_theme.dart';
-import 'package:sailer/widgets/5_year_islands/5_year_island_left.dart';
-import 'package:sailer/widgets/5_year_islands/5_year_island_right.dart';
-import 'package:sailer/widgets/point_grids.dart';
-import 'package:sailer/widgets/supply_stop_widget.dart';
+import 'package:gemini_goals/main_map/bottom_nav/bottom_nav_bar.dart';
+import 'package:gemini_goals/main_map/celestial_view.dart';
+import 'package:gemini_goals/models/supply_stop.dart';
+import 'package:gemini_goals/parent_cubit/parent_cubit.dart';
+import 'package:gemini_goals/parent_cubit/parent_state.dart';
+import 'package:gemini_goals/theme/gemini_theme.dart';
+import 'package:gemini_goals/widgets/year_goal_widget.dart';
+import 'package:gemini_goals/widgets/point_grids.dart';
+import 'package:gemini_goals/widgets/sub_goal.dart';
 
 class MainMapView extends StatefulWidget {
   const MainMapView({super.key});
@@ -53,10 +52,10 @@ class _MainMapViewState extends State<MainMapView> {
                         children: [
                           Container(
                             decoration: const BoxDecoration(
-                              gradient: LinearGradient(
-                                begin: Alignment.topCenter,
-                                end: Alignment.bottomLeft,
-                                colors: SailerTheme.backgroundColors,
+                              gradient: RadialGradient(
+                                center: Alignment.topCenter,
+                                radius: 1.4,
+                                colors: GeminiTheme.backgroundColors,
                               ),
                             ),
                           ),
@@ -66,28 +65,20 @@ class _MainMapViewState extends State<MainMapView> {
                             child: ListView.builder(
                               reverse: true,
                               itemCount: state.destinations.keys.length,
-                              itemBuilder: (context, index) => index == 0
-                                  ? Padding(
-                                      padding: const EdgeInsets.only(bottom: 70.0),
-                                      child: DestinationsAndSupplyStops(
-                                        destinationKey:
-                                            state.destinations.keys.toList()[index],
-                                        right: index.isEven,
-                                        state: state,
-                                        index: index,
-                                        supplyStops: state.supplyStops[
-                                            state.destinations.keys.toList()[index]],
-                                      ),
-                                    )
-                                  : DestinationsAndSupplyStops(
-                                      destinationKey:
-                                          state.destinations.keys.toList()[index],
-                                      right: index.isEven,
-                                      state: state,
-                                      index: index,
-                                      supplyStops: state.supplyStops[
-                                          state.destinations.keys.toList()[index]],
-                                    ),
+                              itemBuilder: (context, index) => Padding(
+                                padding: const EdgeInsets.only(
+                                  bottom: 70.0,
+                                  left: 16,
+                                  right: 16,
+                                ),
+                                child: DestinationsAndSupplyStops(
+                                  destinationKey: state.destinations.keys.toList()[index],
+                                  state: state,
+                                  index: index,
+                                  supplyStops: state.supplyStops[
+                                      state.destinations.keys.toList()[index]],
+                                ),
+                              ),
                             ),
                           ),
                           Positioned(
@@ -126,13 +117,11 @@ class _MainMapViewState extends State<MainMapView> {
 
 class DestinationsAndSupplyStops extends StatelessWidget {
   final ParentState state;
-  final bool right;
   final int index;
   final List<SupplyStop>? supplyStops;
   final String destinationKey;
   const DestinationsAndSupplyStops({
     super.key,
-    required this.right,
     required this.state,
     required this.index,
     this.supplyStops,
@@ -143,29 +132,18 @@ class DestinationsAndSupplyStops extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        right
-            ? Center(
-                child: Year5IslandRight(
-                  destinationKey: state.destinations.keys.toList()[index],
-                ),
-              )
-            : Center(
-                child: Year5IslandLeft(
-                  destinationKey: state.destinations.keys.toList()[index],
-                ),
-              ),
+        Center(
+          child: YearGoal(
+            destinationKey: state.destinations.keys.toList()[index],
+          ),
+        ),
         if (supplyStops != null)
           ...List.generate(
             supplyStops!.length,
-            (supplyIndex) => Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8.0),
-              child: SupplyStopWidget(
-                supplyStop: supplyStops![supplyIndex].title,
-                right: supplyIndex.isEven,
-                arrived: supplyStops![supplyIndex].arrived,
-                destinationKey: destinationKey,
-                supplyIndex: supplyIndex,
-              ),
+            (supplyIndex) => SubGoalWidget(
+              supplyStop: supplyStops![supplyIndex],
+              destinationKey: destinationKey,
+              supplyIndex: supplyIndex,
             ),
           ),
       ],

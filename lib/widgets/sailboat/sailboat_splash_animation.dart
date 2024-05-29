@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:sailer/theme/sailer_theme.dart';
+import 'package:gemini_goals/theme/gemini_theme.dart';
 
 class BoatTapWidget extends StatefulWidget {
   const BoatTapWidget({
@@ -72,7 +72,7 @@ class _BoatTapWidgetState extends State<BoatTapWidget> with TickerProviderStateM
                     height: fill.value,
                     width: fill.value,
                     decoration: BoxDecoration(
-                      color: SailerTheme.backgroundColors[1],
+                      color: GeminiTheme.backgroundColors[1],
                       borderRadius: BorderRadius.circular(50),
                     ),
                   ),

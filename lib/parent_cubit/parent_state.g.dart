@@ -22,8 +22,9 @@ ParentState _$ParentStateFromJson(Map<String, dynamic> json) => ParentState(
               .toList() ??
           const [
             'Return to the presense of God and reign with him in Eternal Glory in the Celestial Kingdom',
-            'Faithful Temple Marriage' 'Fulfilled my life mission',
+            'Faithful Temple Marriage',
             'Become the person I need to become',
+            'Fulfilled my life mission',
             'Have a great marriage and great family'
           ],
       supplyStops: (json['SupplyStops'] as Map<String, dynamic>?)?.map(

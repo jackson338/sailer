@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:sailer/parent_cubit/parent_cubit.dart';
-import 'package:sailer/theme/sailer_theme.dart';
+import 'package:gemini_goals/parent_cubit/parent_cubit.dart';
+import 'package:gemini_goals/theme/gemini_theme.dart';
 
 class DestinationPage extends StatefulWidget {
   final ParentCubit cubit;
@@ -48,7 +48,7 @@ class _DestinationPageState extends State<DestinationPage> {
         gradient: const LinearGradient(
           begin: Alignment.bottomLeft,
           end: Alignment.topRight,
-          colors: SailerTheme.backgroundColors,
+          colors: GeminiTheme.backgroundColors,
         ),
       ),
       child: Padding(
@@ -60,10 +60,10 @@ class _DestinationPageState extends State<DestinationPage> {
             children: [
               Text(
                 'Destinations',
-                style: SailerTheme.title,
+                style: GeminiTheme.title,
               ),
               TextField(
-                style: SailerTheme.title,
+                style: GeminiTheme.title,
                 controller: controller,
                 keyboardAppearance: Brightness.dark,
                 onSubmitted: (val) {
@@ -88,13 +88,13 @@ class _DestinationPageState extends State<DestinationPage> {
                       children: [
                         Text(
                           destinations[index],
-                          style: SailerTheme.title,
+                          style: GeminiTheme.title,
                         ),
                         destIndex == index
                             ? Container(
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(30),
-                                  color: SailerTheme.islandColor,
+                                  color: GeminiTheme.islandColor,
                                 ),
                                 height: 30,
                                 width: 30,

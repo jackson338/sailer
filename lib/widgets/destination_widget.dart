@@ -3,9 +3,9 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:sailer/models/destination_model.dart';
-import 'package:sailer/parent_cubit/parent_cubit.dart';
-import 'package:sailer/theme/sailer_theme.dart';
+import 'package:gemini_goals/models/destination_model.dart';
+import 'package:gemini_goals/parent_cubit/parent_cubit.dart';
+import 'package:gemini_goals/theme/gemini_theme.dart';
 
 class DestinationsListWidget extends StatefulWidget {
   final DestinationModel dm;
@@ -109,7 +109,7 @@ class _DestinationsListWidgetState extends State<DestinationsListWidget>
                   ),
                   child: Text(
                     widget.dm.title.substring(0, write.value),
-                    style: SailerTheme.bodyText,
+                    style: GeminiTheme.bodyText,
                   ),
                 );
               }),
@@ -138,7 +138,7 @@ class CompletePainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final paint = Paint()
-      ..color = SailerTheme.widgetColor
+      ..color = GeminiTheme.widgetColor
       ..strokeCap = StrokeCap.round;
 
     final random = Random();

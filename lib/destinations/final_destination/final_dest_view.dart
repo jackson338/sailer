@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sailer/theme/sailer_theme.dart';
+import 'package:gemini_goals/theme/gemini_theme.dart';
 
 class FinalDestView extends StatelessWidget {
   const FinalDestView({super.key});
@@ -8,10 +8,10 @@ class FinalDestView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: SailerTheme.lineColor,
+        backgroundColor: GeminiTheme.lineColor,
         title: Text(
           'Final Destination',
-          style: SailerTheme.title,
+          style: GeminiTheme.title,
         ),
       ),
       body: Container(
@@ -19,7 +19,7 @@ class FinalDestView extends StatelessWidget {
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomLeft,
-            colors: SailerTheme.islandColors,
+            colors: GeminiTheme.islandColors,
           ),
         ),
       ),

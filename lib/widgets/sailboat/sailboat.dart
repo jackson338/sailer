@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sailer/theme/sailer_theme.dart';
+import 'package:gemini_goals/theme/gemini_theme.dart';
 
 class Sailboat extends StatelessWidget {
   const Sailboat({
@@ -33,7 +33,7 @@ class _SailPainter extends CustomPainter {
     final Paint fillPaint = Paint()
       // ..shader = gradient.createShader(rect)
       ..style = PaintingStyle.fill
-      ..color = SailerTheme.widgetColor;
+      ..color = GeminiTheme.widgetColor;
 
     double base = 37;
     double top = 4;
@@ -67,7 +67,7 @@ class _HullPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     Paint paint = Paint()
-      ..color = SailerTheme.widgetColor
+      ..color = GeminiTheme.widgetColor
       ..style = PaintingStyle.fill; // Filling the shape with black color
 
     // Assuming the arc's height is defined by the difference in y-values of P1 and P2

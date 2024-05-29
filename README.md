@@ -1,4 +1,4 @@
-# sailer
+# gemini_goals
 
 A new Flutter project.
 

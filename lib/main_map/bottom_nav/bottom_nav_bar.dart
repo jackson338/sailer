@@ -3,11 +3,11 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:sailer/alligator.dart';
-import 'package:sailer/main_map/bottom_nav/add_destination.dart';
-import 'package:sailer/parent_cubit/parent_cubit.dart';
-import 'package:sailer/theme/sailer_theme.dart';
-import 'package:sailer/widgets/sailboat/sailboat.dart';
+import 'package:gemini_goals/alligator.dart';
+import 'package:gemini_goals/main_map/bottom_nav/add_destination.dart';
+import 'package:gemini_goals/parent_cubit/parent_cubit.dart';
+import 'package:gemini_goals/theme/gemini_theme.dart';
+import 'package:gemini_goals/widgets/sailboat/sailboat.dart';
 
 class BottomNavBar extends StatelessWidget {
   final BoxConstraints constraints;
@@ -32,7 +32,7 @@ class BottomNavBar extends StatelessWidget {
             child: BackdropFilter(
               filter: ImageFilter.blur(sigmaX: 24.3, sigmaY: 24.3),
               child: Container(
-                color: SailerTheme.islandColors[0].withOpacity(0.53),
+                color: GeminiTheme.islandColors[0].withOpacity(0.53),
               ),
             ),
           ),
@@ -69,7 +69,7 @@ class BottomNavBar extends StatelessWidget {
                     padding: EdgeInsets.only(top: 9.0),
                     child: Icon(
                       FontAwesomeIcons.fileCirclePlus,
-                      color: SailerTheme.widgetColor,
+                      color: GeminiTheme.widgetColor,
                       size: 50,
                     ),
                   ),
@@ -97,6 +97,6 @@ void _destinationSheet(
         cubit: cubit,
       ),
     ),
-    SailerTheme.backgroundColors[0],
+    GeminiTheme.backgroundColors[0],
   );
 }

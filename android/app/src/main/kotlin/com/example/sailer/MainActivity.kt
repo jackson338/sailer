@@ -1,4 +1,4 @@
-package com.example.sailer
+package com.example.gemini_goals
 
 import io.flutter.embedding.android.FlutterActivity
 

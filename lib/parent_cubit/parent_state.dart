@@ -2,8 +2,8 @@
 import 'package:equatable/equatable.dart';
 // ignore: depend_on_referenced_packages
 import 'package:json_annotation/json_annotation.dart';
-import 'package:sailer/models/destination_model.dart';
-import 'package:sailer/models/supply_stop.dart';
+import 'package:gemini_goals/models/destination_model.dart';
+import 'package:gemini_goals/models/supply_stop.dart';
 part 'parent_state.g.dart';
 
 @JsonSerializable(fieldRename: FieldRename.pascal, explicitToJson: true)

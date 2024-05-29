@@ -1,9 +1,7 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:sailer/parent_cubit/parent_cubit.dart';
-import 'package:sailer/theme/sailer_theme.dart';
+import 'package:gemini_goals/parent_cubit/parent_cubit.dart';
+import 'package:gemini_goals/theme/gemini_theme.dart';
 
 class CelestialView extends StatelessWidget {
   final Function() returnToMap;
@@ -19,41 +17,38 @@ class CelestialView extends StatelessWidget {
       height: MediaQuery.of(context).size.height,
       width: MediaQuery.of(context).size.width,
       decoration: const BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-          colors: SailerTheme.celestialGradient,
+        gradient: RadialGradient(
+          center: Alignment.bottomCenter,
+          colors: GeminiTheme.celestialGradient,
+          radius: 1.5,
         ),
       ),
-      child: CustomPaint(
-        painter: StarrySkyPainter(),
-        child: SafeArea(
-          child: Column(
-            children: [
-              ...List.generate(
-                pc.state.celestialGoals.length,
-                (index) => Align(
-                  alignment: index.isEven ? Alignment.centerLeft : Alignment.centerRight,
-                  child: Stars(
-                    goal: pc.state.celestialGoals[index],
+      child: SafeArea(
+        child: Column(
+          children: [
+            ...List.generate(
+              pc.state.celestialGoals.length,
+              (index) => Align(
+                alignment: index.isEven ? Alignment.centerLeft : Alignment.centerRight,
+                child: Stars(
+                  goal: pc.state.celestialGoals[index],
+                ),
+              ),
+            ),
+            const Spacer(),
+            GestureDetector(
+              onTap: returnToMap,
+              child: Center(
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(
+                    'Tap to return',
+                    style: GeminiTheme.subtitle,
                   ),
                 ),
               ),
-              const Spacer(),
-              GestureDetector(
-                onTap: returnToMap,
-                child: Center(
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text(
-                      'Tap to return',
-                      style: SailerTheme.subtitle,
-                    ),
-                  ),
-                ),
-              ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
@@ -78,36 +73,12 @@ class Stars extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 10),
         child: Text(
           goal,
-          style: SailerTheme.bodyText.copyWith(
-            color: SailerTheme.starColor,
+          style: GeminiTheme.bodyText.copyWith(
+            color: GeminiTheme.starColor,
             fontSize: 25,
           ),
         ),
       ),
     );
   }
-}
-
-class StarrySkyPainter extends CustomPainter {
-  final int numberOfStars;
-  final Random random = Random();
-
-  StarrySkyPainter({this.numberOfStars = 9000});
-
-  @override
-  void paint(Canvas canvas, Size size) {
-    Paint starPaint = Paint()
-      ..color = SailerTheme.starColors[random.nextInt(SailerTheme.starColors.length - 1)];
-    for (int i = 0; i < numberOfStars; i++) {
-      starPaint.color =
-          SailerTheme.starColors[random.nextInt(SailerTheme.starColors.length - 1)];
-      final position = Offset(
-          random.nextDouble() * size.width, random.nextDouble() * size.height - 35);
-      final starSize = random.nextDouble() * 1.05 + 0.05;
-      canvas.drawCircle(position, starSize, starPaint);
-    }
-  }
-
-  @override
-  bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
 }

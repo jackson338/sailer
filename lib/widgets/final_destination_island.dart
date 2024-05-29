@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:sailer/parent_cubit/parent_cubit.dart';
-import 'package:sailer/theme/sailer_theme.dart';
-import 'package:sailer/widgets/destination_marker.dart';
+import 'package:gemini_goals/parent_cubit/parent_cubit.dart';
+import 'package:gemini_goals/theme/gemini_theme.dart';
+import 'package:gemini_goals/widgets/destination_marker.dart';
 
 class FinalDestIsland extends StatelessWidget {
   const FinalDestIsland({
@@ -41,7 +41,7 @@ class FinalDestIsland extends StatelessWidget {
             Center(
               child: Text(
                 'Final Destination',
-                style: SailerTheme.title,
+                style: GeminiTheme.title,
               ),
             ),
           ],
@@ -59,7 +59,7 @@ class _IslandPainter extends CustomPainter {
     const Gradient gradient = LinearGradient(
       begin: Alignment.topCenter,
       end: Alignment.bottomCenter,
-      colors: SailerTheme.islandColors,
+      colors: GeminiTheme.islandColors,
     );
 
     // Convert the gradient into a shader
@@ -69,7 +69,7 @@ class _IslandPainter extends CustomPainter {
       ..style = PaintingStyle.fill;
 
     final strokePaint = Paint()
-      ..color = SailerTheme.borderColor
+      ..color = GeminiTheme.borderColor
       ..strokeWidth = 2
       ..style = PaintingStyle.stroke;
 

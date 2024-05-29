@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
 
-import 'package:sailer/theme/sailer_theme.dart';
+import 'package:gemini_goals/theme/gemini_theme.dart';
 
 class MapGrid extends StatelessWidget {
   const MapGrid({super.key});
@@ -31,13 +31,13 @@ class BottomPointGridPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final paint = Paint()
-      ..color = SailerTheme.lineColor
-      ..strokeWidth = 0.25
+      ..color = GeminiTheme.lineColor
+      ..strokeWidth = 0.65
       ..style = PaintingStyle.stroke;
 
     const double startX = 0;
     final double startY = size.height;
-    const int lines = 30;
+    const int lines = 26;
     final double radius = math.sqrt(size.width * size.width + size.height * size.height);
 
     for (int i = 0; i < lines; i++) {
@@ -58,14 +58,14 @@ class CenterPointGrid extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final paint = Paint()
-      ..color = SailerTheme.lineColor
-      ..strokeWidth = 0.25
+      ..color = GeminiTheme.lineColor
+      ..strokeWidth = 0.8
       ..style = PaintingStyle.stroke;
     final width = size.width + 9;
 
     final double startX = width;
     final double startY = size.height * 0.4;
-    const int lines = 22;
+    const int lines = 14;
     final double radius = math.sqrt(width * width + size.height * size.height);
 
     for (int i = 0; i < lines; i++) {

@@ -1,6 +1,6 @@
 {
-    "name": "sailer",
-    "short_name": "sailer",
+    "name": "gemini_goals",
+    "short_name": "gemini_goals",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

@@ -1,9 +1,9 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:sailer/parent_cubit/parent_cubit.dart';
-import 'package:sailer/theme/sailer_theme.dart';
-import 'package:sailer/widgets/destination_widget.dart';
+import 'package:gemini_goals/parent_cubit/parent_cubit.dart';
+import 'package:gemini_goals/theme/gemini_theme.dart';
+import 'package:gemini_goals/widgets/destination_widget.dart';
 
 class DestinationsList extends StatelessWidget {
   final String destinationKey;
@@ -19,7 +19,7 @@ class DestinationsList extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         border: Border.all(
-          color: SailerTheme.lineColor,
+          color: GeminiTheme.lineColor,
           width: 2,
         ),
       ),
@@ -34,7 +34,7 @@ class DestinationsList extends StatelessWidget {
               child: BackdropFilter(
                 filter: ImageFilter.blur(sigmaX: 17.0, sigmaY: 17.0),
                 child: Container(
-                  color: SailerTheme.islandColors[1].withOpacity(0.2),
+                  color: GeminiTheme.islandColors[1].withOpacity(0.2),
                 ),
               ),
             ),
