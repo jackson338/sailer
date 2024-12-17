@@ -58,6 +58,21 @@ class ParentCubit extends HydratedCubit<ParentState> {
     emit(state.copyWith(destinations: destinations));
   }
 
+  void deleteSubDestination(String key, int index) {
+    List<DestinationModel> sd = [];
+    if (state.destinations[key] != null) {
+      sd = [...state.destinations[key]!];
+    }
+    sd.removeAt(index);
+    Map<String, List<DestinationModel>> destinations = {
+      ...state.destinations.map(
+        (k, value) => k == key ? MapEntry(key, sd) : MapEntry(k, value),
+      )
+    };
+
+    emit(state.copyWith(destinations: destinations));
+  }
+
   void addSupplyStop(String key, String supplyStop) {
     List<SupplyStop> sp = [];
     if (state.supplyStops[key] != null) {
@@ -76,6 +91,18 @@ class ParentCubit extends HydratedCubit<ParentState> {
       )
     };
 
+    emit(state.copyWith(supplyStops: supplyStops));
+  }
+
+  void deleteSupplyStop(SupplyStop stop, String key) {
+    List<SupplyStop> sp = [...state.supplyStops[key]!];
+    sp.removeWhere((s) => s.id == stop.id);
+
+  Map<String, List<SupplyStop>> supplyStops = {
+      ...state.supplyStops.map(
+        (k, v) => k == key ? MapEntry(key, sp) : MapEntry(k, v),
+      )
+    };
     emit(state.copyWith(supplyStops: supplyStops));
   }
 
@@ -151,7 +178,9 @@ class ParentCubit extends HydratedCubit<ParentState> {
     required int index,
     required bool arrive,
   }) {
-    List<DestinationModel> destinations = [...state.destinations[destinationKey]!];
+    List<DestinationModel> destinations = [
+      ...state.destinations[destinationKey]!
+    ];
     final replaceSupply = DestinationModel(
       title: destinations[index].title,
       arrived: arrive,
@@ -160,7 +189,9 @@ class ParentCubit extends HydratedCubit<ParentState> {
     destinations.removeAt(index);
     destinations.insert(index, replaceSupply);
 
-    Map<String, List<DestinationModel>> newDestinations = {...state.destinations};
+    Map<String, List<DestinationModel>> newDestinations = {
+      ...state.destinations
+    };
     newDestinations.update(destinationKey, (value) => destinations);
 
     emit(state.copyWith(destinations: newDestinations));

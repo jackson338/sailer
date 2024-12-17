@@ -41,6 +41,10 @@ class _SubDestinationPageState extends State<SubDestinationPage> {
         );
       });
 
+  void remove(int index) => setState(() {
+        subDestinations.removeAt(index);
+      });
+
   @override
   Widget build(BuildContext context) {
     TextEditingController controller = TextEditingController();
@@ -77,9 +81,12 @@ class _SubDestinationPageState extends State<SubDestinationPage> {
               Expanded(
                 child: ListView.builder(
                   itemCount: subDestinations.length,
-                  itemBuilder: (context, index) => Text(
-                    subDestinations[index].title,
-                    style: SailerTheme.bodyText,
+                  itemBuilder: (context, index) => SubDestinationWidget(
+                    header: subDestinations[index].title,
+                    cubit: widget.cubit,
+                    destKey: widget.dest,
+                    index: index,
+                    remove: () => remove(index),
                   ),
                 ),
               ),
@@ -87,6 +94,48 @@ class _SubDestinationPageState extends State<SubDestinationPage> {
           ),
         ),
       ),
+    );
+  }
+}
+
+class SubDestinationWidget extends StatelessWidget {
+  final String header;
+  final String destKey;
+  final ParentCubit cubit;
+  final int index;
+  final Function() remove;
+  const SubDestinationWidget({
+    super.key,
+    required this.header,
+    required this.cubit,
+    required this.destKey,
+    required this.index,
+    required this.remove,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        GestureDetector(
+          onTap: () {
+            remove();
+            cubit.deleteSubDestination(destKey, index);
+          },
+          child: const Padding(
+            padding: EdgeInsets.all(8.0),
+            child: Icon(
+              Icons.delete,
+              color: Color(0xFFBC6767),
+              size: 28,
+            ),
+          ),
+        ),
+        Text(
+          header,
+          style: SailerTheme.bodyText,
+        ),
+      ],
     );
   }
 }

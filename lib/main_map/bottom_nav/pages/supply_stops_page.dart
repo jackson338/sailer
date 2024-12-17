@@ -41,6 +41,11 @@ class _SupplyStopsPageState extends State<SupplyStopsPage> {
         );
       });
 
+      @override
+  void dispose() {
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     TextEditingController controller = TextEditingController();
@@ -77,9 +82,31 @@ class _SupplyStopsPageState extends State<SupplyStopsPage> {
               Expanded(
                 child: ListView.builder(
                   itemCount: supplyStops.length,
-                  itemBuilder: (context, index) => Text(
-                    supplyStops[index].title,
-                    style: SailerTheme.subtitle,
+                  itemBuilder: (context, index) => Row(
+                    children: [
+                      GestureDetector(
+                        onTap: () {
+                          widget.cubit.deleteSupplyStop(
+                              supplyStops[index], widget.dest);
+                          setState(() {
+                            supplyStops.removeWhere(
+                                (s) => s.id == supplyStops[index].id);
+                          });
+                        },
+                        child: const Padding(
+                          padding: EdgeInsets.all(8.0),
+                          child: Icon(
+                            Icons.delete,
+                            color: Color(0xFFBC6767),
+                            size: 28,
+                          ),
+                        ),
+                      ),
+                      Text(
+                        supplyStops[index].title,
+                        style: SailerTheme.subtitle,
+                      ),
+                    ],
                   ),
                 ),
               ),
